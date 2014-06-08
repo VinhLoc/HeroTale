@@ -39,7 +39,7 @@ public class AccountMgr {
 		player.PAccount.initialize( _uid++ , username );
 		player.PCharacters.initialize( 9 , 1 );
 		player.PEnergy.initialize(250);
-		player.PTactis.Initialize(9,1);
+		player.PTactis.Initialize(25 , 9 , 1 );
 
 		PlayerMgr.Instance.CurrentPlayer = player;
 	}

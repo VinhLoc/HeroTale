@@ -4,9 +4,9 @@ using System.Collections;
 public class PointStats : MonoBehaviour {
 
 	[SerializeField]
-	public PointBase Health;
+	public PointBase Health = new PointBase();
 	[SerializeField]
-	public PointBase Rage;
+	public PointBase Rage = new PointBase();
 
 	public void initialize ( int maxHp , int maxRage )
 	{

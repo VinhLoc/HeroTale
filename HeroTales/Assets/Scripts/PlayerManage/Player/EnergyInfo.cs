@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnergyInfo{
 
-	public PointBase Energy;
+	public PointBase Energy = new PointBase();
 
 	public void initialize ( int maxEnergy )
 	{

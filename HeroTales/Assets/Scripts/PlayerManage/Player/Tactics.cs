@@ -3,21 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Tactics {
+	
+	public Slots SlotsDeployment = new Slots();
 
+	private int _numDeploy = 0;
 
-	public Slots SlotsCharacter = new Slots();
-
-	public PointBase OpenSlot;
-
-	public void Initialize ( int maxSlot , int currentSlot )
+	public int NumDeploy
 	{
-		this.OpenSlot.Max = maxSlot;
-		this.OpenSlot.Current = currentSlot;
+		get
+		{
+			return _numDeploy;
+		}
+		set{
+			_numDeploy = value;
 
-		SlotsCharacter.NumOpen = OpenSlot.Current;
-		SlotsCharacter.MaxOpen = OpenSlot.Max;
+			SlotsDeployment.NumAllow = _numDeploy;
+		}
+	}
 
-		SlotsCharacter.Initialize( );
+	public void Initialize ( int charSlot , int deploySlot , int numDeploy )
+	{
+		this.NumDeploy = numDeploy;
+
+		SlotsDeployment.Initialize( deploySlot , this.NumDeploy );
 	}
 }
 
@@ -25,15 +33,13 @@ public class Tactics {
 public class Slot
 {
 	public int Index = -1;
-	public bool IsOpened = false;
-	public GameObject Character = null;
+	public bool IsEmpty = true;
+	private GameObject Character = null;
 
 	public void Add ( GameObject @char )
 	{
-		if( !IsOpened )
-			return;
-
 		Character = @char;
+		IsEmpty = false;
 	}
 
 	public void Remove ( )
@@ -42,23 +48,45 @@ public class Slot
 		{
 			Character = null;
 		}
+
+		IsEmpty = true;
+	}
+
+	public GameObject Get ( )
+	{
+		return IsEmpty ? null : Character;
 	}
 }
 
 public class Slots : List<Slot>
 {
-	public int NumOpen;
-	public int MaxOpen;
-
-	public void Initialize ( )
+	public int NumAllow;
+	public int NumSlot;
+	private int CurrentFilled
 	{
-		NumOpen = Mathf.Min ( NumOpen , MaxOpen );
+		get
+		{
+			int result = 0;
+			for( int i = 0 , count = this.Count ; i < count ; ++i )
+			{
+				result += this[i].IsEmpty ? 0 : 1;
+			}
 
-		for( int i = 0 ; i < MaxOpen ; ++i )
+			return result;
+		}
+	}
+
+	public void Initialize ( int numSlot , int numAllow )
+	{
+		numAllow = Mathf.Min( numSlot , numAllow );
+
+		this.NumSlot = numSlot;
+		this.NumAllow = numAllow;
+
+		for( int i = 0 ; i < this.NumSlot ; ++i )
 		{
 			Slot slot = new Slot();
 			slot.Index = i;
-			slot.IsOpened = i < NumOpen;
 			this.Add(slot);
 		}
 	}
@@ -66,28 +94,39 @@ public class Slots : List<Slot>
 	public bool TryAddToSlot ( int index , GameObject @char , out GameObject @charInside )
 	{
 		@charInside = null;
-		if( index >= this.NumOpen )
+		if( index >= this.Count || index < 0 )
 			return false;
 
-		if( !this[index].IsOpened )
+		if( this.CurrentFilled >= this.NumAllow )
 			return false;
 
-		@charInside = this[index].Character;
+		if( !this[index].IsEmpty )
+			@charInside = this[index].Get();
 
 		this[index].Add(@char);
 
 		return true;
 	}
 
-	public bool TryRemoveFromSlot ( int index )
+	public void TryRemoveFromSlot ( int index )
 	{
-		if( index >= this.NumOpen )
-			return false;
-		if( !this[index].IsOpened )
-			return false;
+		if( index >= this.Count || index < 0 )
+			return;
 
 		this[index].Remove();
+	}
 
-		return true;
+	public void Clone ( Slots slots ) 
+	{
+		Slot slot = null;
+		GameObject charInsd;
+		for( int i = 0 , count = this.Count ; i < count ; ++i )
+		{
+			slot = this[i];
+			if( !slot.IsEmpty )
+			{
+				slots.TryAddToSlot( i , GameObject.Instantiate( slot.Get() ) as GameObject , out charInsd );
+			}
+		}
 	}
 }
