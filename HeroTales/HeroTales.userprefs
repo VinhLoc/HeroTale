@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleManage/BattleController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\SelectChar\SelectCharControl.cs">
     <Files>
-      <File FileName="Assets/Scripts/BattleManage/BattleController.cs" Line="36" Column="18" />
-      <File FileName="Assets/Scripts/BattleManage/BattleActionController.cs" Line="79" Column="3" />
+      <File FileName="Assets\Scripts\PlayerManage\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerManage\Player\PlayerMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerManage\Player\Tactics.cs" Line="16" Column="4" />
+      <File FileName="Assets\Scripts\CharacterManage\Character\InfoStats.cs" Line="16" Column="28" />
+      <File FileName="Assets\Scripts\Scenes\SelectChar\ButtonSelectChar.cs" Line="32" Column="1" />
+      <File FileName="Assets\Scripts\Scenes\SelectChar\SelectCharControl.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
