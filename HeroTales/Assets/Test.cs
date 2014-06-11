@@ -16,16 +16,30 @@ public class Test : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(1);
 
-		AccountMgr.Instance.createNewAccount("BrokenHell");
+		
+		Player player = AccountMgr.Instance.createNewAccount("BrokenHell");
 
-		Player player = PlayerMgr.Instance.CurrentPlayer;
+		for( int i = 0 ; i < 9 ; ++i )
+		{
+			GameObject mainChar = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ASSASSIN , player.PAccount.Username + i.ToString() );
+			player.PCharacters.Characters.Add(mainChar);
+			
+			GameObject @charInside;
+			player.PTactis.SlotsDeployment.TryAddToSlot( i , mainChar , out @charInside );
+		}
 
-		GameObject mainChar = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ASSASSIN , player.PAccount.Username );
+		Player boss = AccountMgr.Instance.createNewAccount("FinalBoss");
 
-		player.PCharacters.Characters.Add(mainChar);
-		GameObject @charInside;
-		player.PTactis.SlotsDeployment.TryAddToSlot( index , mainChar , out @charInside );
+		for( int i = 0 ; i < 9 ; ++i )
+		{
+			GameObject mainChar = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ARCHER , boss.PAccount.Username + i.ToString() );
+			boss.PCharacters.Characters.Add(mainChar);
+			
+			GameObject @charInside;
+			boss.PTactis.SlotsDeployment.TryAddToSlot( i , mainChar , out @charInside );
+		}
 
-		BattleController.Instance.AutoDeploy( player.PTactis.SlotsDeployment , null );
+
+		BattleController.Instance.AutoDeploy( player.PTactis.SlotsDeployment , boss.PTactis.SlotsDeployment );
 	}
 }

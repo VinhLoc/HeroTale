@@ -36,5 +36,13 @@ public class PointBase {
 		}
 	}
 
+	public void Reset ( )
+	{
+		_current = _max;
+	}
 
+	public void ResetToZero ( )
+	{
+		_current = 0;
+	}
 }

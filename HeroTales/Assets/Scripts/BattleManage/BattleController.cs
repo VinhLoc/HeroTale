@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BattleController : MonoBehaviour {
 	
@@ -40,14 +41,16 @@ public class BattleController : MonoBehaviour {
 		if( lSlots != null )
 		{
 			BattleTurnController.Instance.CloneLSlot( lSlots );
-			Deploy( DEPLOY_TYPE.LEFT , BattleTurnController.Instance.LGroup );
+//			Deploy( DEPLOY_TYPE.LEFT , BattleTurnController.Instance.LGroup );
 		}
 
 		if( rSlots != null )
 		{
 			BattleTurnController.Instance.CloneRSlot( rSlots );
-			Deploy( DEPLOY_TYPE.RIGHT , BattleTurnController.Instance.RGroup );
+//			Deploy( DEPLOY_TYPE.RIGHT , BattleTurnController.Instance.RGroup );
 		}
+
+		CalculateResult( );
 	}
 
 	private void Deploy ( DEPLOY_TYPE type , Slots slots )
@@ -107,5 +110,50 @@ public class BattleController : MonoBehaviour {
 		{
 
 		}
+	}
+
+
+	// Battle result //
+
+	public class BattleResult
+	{
+		GameObject Attacker;
+		GameObject Defender;
+		AttackInfo Info;
+
+		public class AttackInfo
+		{
+			public int Damage;
+			public bool isMiss;
+		}
+	}
+
+	private void CalculateResult ( )
+	{
+		BattleTurnController.Instance.CalculateTurn();
+
+		List<Slot> list = BattleTurnController.Instance.ListTurn;
+
+		bool hasEnd = false;
+
+		do
+		{
+			Slot slot;
+			GameObject attacker;
+			GameObject defender;
+			for( int i = 0 , count = list.Count; i < count ; ++i )
+			{
+				slot = list[i];
+				if( !slot.IsEmpty )
+				{
+					attacker = slot.Get();
+					PointStats point = attacker.GetComponent<PointStats>();
+					if ( point != null && !point.HasDie )
+					{
+						//TODO do attacking
+					}
+				}
+			}
+		}while(!hasEnd);
 	}
 }

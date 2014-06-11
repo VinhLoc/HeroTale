@@ -78,6 +78,7 @@ public class Slots : List<Slot>
 
 	public void Initialize ( int numSlot , int numAllow )
 	{
+		this.Clear( );
 		numAllow = Mathf.Min( numSlot , numAllow );
 
 		this.NumSlot = numSlot;
@@ -87,6 +88,7 @@ public class Slots : List<Slot>
 		{
 			Slot slot = new Slot();
 			slot.Index = i;
+			slot.IsEmpty = true;
 			this.Add(slot);
 		}
 	}
@@ -120,12 +122,14 @@ public class Slots : List<Slot>
 	{
 		Slot slot = null;
 		GameObject charInsd;
-		for( int i = 0 , count = this.Count ; i < count ; ++i )
+
+		for( int i = 0 , count = Mathf.Min( this.Count , slots.Count ) ; i < count ; ++i )
 		{
-			slot = this[i];
+			slot = slots[i];
+
 			if( !slot.IsEmpty )
 			{
-				slots.TryAddToSlot( i , GameObject.Instantiate( slot.Get() ) as GameObject , out charInsd );
+				this.TryAddToSlot( i , GameObject.Instantiate( slot.Get() ) as GameObject , out charInsd );
 			}
 		}
 	}

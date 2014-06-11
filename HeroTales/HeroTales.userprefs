@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleManage/BattleController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Desktop/SushiZombie/Src/Suzy/Assets/Scripts/MLM/MLMApi.cs">
     <Files>
-      <File FileName="Assets/Scripts/BattleManage/BattleController.cs" Line="36" Column="18" />
-      <File FileName="Assets/Scripts/BattleManage/BattleActionController.cs" Line="79" Column="3" />
+      <File FileName="../../Desktop/SushiZombie/Src/Suzy/Assets/Scenes/StartScene/StartController.cs" Line="32" Column="17" />
+      <File FileName="../../Desktop/SushiZombie/Src/Suzy/Assets/Scripts/MLM/MLMApi.cs" Line="21" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

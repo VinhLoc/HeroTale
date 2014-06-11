@@ -30,8 +30,9 @@ public class BattleActionController : MonoBehaviour {
 	}
 
 	// Move Action
-	public float StartMoveDeltaPosition = -4;
+	public float StartMoveDeltaPosition = 4;
 	public Vector3 MoveObjPosition = new Vector3( -2 , 0 , 0 );
+
 	public float ActionMoveDuration = 0.4f;
 	private GameObject PreMove;
 
@@ -39,13 +40,17 @@ public class BattleActionController : MonoBehaviour {
 
 	public void PlayActionDeployment ( Transform character , BattleController.DEPLOY_TYPE type )
 	{
+		bool isLeft = type == BattleController.DEPLOY_TYPE.LEFT;
+
 		GameObject moveObj = GameObject.Instantiate( PreMove ) as GameObject;
 		moveObj.name = MOVE_OBJ_NAME;
 		moveObj.transform.parent = character;
 		moveObj.transform.localPosition = MoveObjPosition;
 
 		Vector3 endPos = character.localPosition;
-		Vector3 startPos = new Vector3( StartMoveDeltaPosition , character.localPosition.y , character.localPosition.z );
+		Vector3 startPos = new Vector3( isLeft ?
+		                                -StartMoveDeltaPosition : StartMoveDeltaPosition
+		                               		, character.localPosition.y , character.localPosition.z );
 
 		character.localPosition = startPos;
 
