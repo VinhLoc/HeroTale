@@ -17,10 +17,13 @@ public class LevelExp
 		this.RequireExp = exp;
 	}
 
+	[SerializeField]
 	public int Level;
+	[SerializeField]
 	public int RequireExp;
 }
 
+[System.Serializable]
 public class LevelExpMap : List<LevelExp>
 {
 	public LevelExpMap ( )

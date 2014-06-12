@@ -1,34 +1,41 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utilities/FileMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CharacterManage/CharacterFactory/CharacterFactory.cs">
     <Files>
-      <File FileName="Assets/Scripts/Utilities/ResourceMgr.cs" Line="53" Column="46" />
-      <File FileName="Assets/Scripts/Utilities/FileMgr.cs" Line="47" Column="51" />
+      <File FileName="Assets/Scripts/Utilities/ResourceMgr.cs" Line="74" Column="8" />
+      <File FileName="Assets/Scripts/Utilities/FileMgr.cs" Line="53" Column="42" />
       <File FileName="Assets/Scripts/BattleManage/BattleActionController.cs" Line="29" Column="64" />
-      <File FileName="Assets/Scripts/Utilities/Constant.cs" Line="18" Column="65" />
+      <File FileName="Assets/Scripts/Utilities/Constant.cs" Line="4" Column="1" />
       <File FileName="Assets/Scripts/CharacterManage/Character/Character.cs" Line="46" Column="40" />
-      <File FileName="Assets/Scripts/PlayerManage/Player/Player.cs" Line="45" Column="46" />
-      <File FileName="Assets/Scripts/CharacterManage/CharacterFactory/CharacterFactory.cs" Line="65" Column="24" />
+      <File FileName="Assets/Scripts/PlayerManage/Player/Player.cs" Line="25" Column="13" />
+      <File FileName="Assets/Scripts/CharacterManage/CharacterFactory/CharacterFactory.cs" Line="46" Column="51" />
       <File FileName="Assets/Scripts/CharacterManage/CharacterFactory/LevelCharacterController.cs" Line="81" Column="23" />
       <File FileName="Assets/Scripts/UI/EditorCharacterStats.cs" Line="24" Column="44" />
+      <File FileName="Assets/Test.cs" Line="25" Column="38" />
+      <File FileName="Assets/Scripts/Utilities/PointBase.cs" Line="26" Column="18" />
+      <File FileName="Assets/Scripts/PlayerManage/Player/EnergyInfo.cs" Line="16" Column="31" />
+      <File FileName="Assets/Scripts/CharacterManage/Character/PointStats.cs" Line="7" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Resources" expanded="True">
+              <Node name="MainChar" expanded="True" />
+            </Node>
             <Node name="Scripts" expanded="True">
-              <Node name="BattleManage" expanded="True" />
               <Node name="CharacterManage" expanded="True">
                 <Node name="Character" expanded="True" />
-                <Node name="CharacterFactory" expanded="True" />
+                <Node name="CharacterFactory" expanded="True">
+                  <Node name="CharacterFactory.cs" selected="True" />
+                </Node>
               </Node>
               <Node name="PlayerManage" expanded="True">
+                <Node name="AccountMgr" expanded="True" />
                 <Node name="Player" expanded="True" />
               </Node>
               <Node name="UI" expanded="True" />
-              <Node name="Utilities" expanded="True">
-                <Node name="FileMgr.cs" selected="True" />
-              </Node>
+              <Node name="Utilities" expanded="True" />
             </Node>
           </Node>
         </State>

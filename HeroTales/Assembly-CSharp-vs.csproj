@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\Scenes\SelectChar\ButtonSelectChar.cs" />
      <Compile Include="Assets\Scripts\Scenes\SelectChar\SelectCharControl.cs" />
      <Compile Include="Assets\Scripts\UI\EditorCharacterStats.cs" />
+     <Compile Include="Assets\Scripts\UI\EditorLevelExp.cs" />
      <Compile Include="Assets\Scripts\Utilities\Constant.cs" />
      <Compile Include="Assets\Scripts\Utilities\FileMgr.cs" />
      <Compile Include="Assets\Scripts\Utilities\PointBase.cs" />
