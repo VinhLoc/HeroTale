@@ -25,11 +25,11 @@ public class ConstantValue {
 	// Files //
 	public const string FILE_NAME_PLAYER = "Player{0}.xml";
 	public const string FILE_NAME_CHARACTER = "Character{0}.xm";
-	public const string FILE_NAME_NEXTLVEXP = "NextLevelExp.xml";
+	public const string FILE_NAME_NEXTLVEXP = "Data/NextLevelExp.xml";
 
-	public const string FILE_TEMPALTE_PAL = "Resources/MainChar/Char_Template_Pal.xml";
-	public const string FILE_TEMPALTE_ASS = "Resources/MainChar/Char_Template_Ass.xml";
-	public const string FILE_TEMPALTE_ARC = "Resources/MainChar/Char_Template_Arc.xml";
+	public const string FILE_TEMPALTE_PAL = "Data/Char_Template_Pal.xml";
+	public const string FILE_TEMPALTE_ASS = "Data/Char_Template_Ass.xml";
+	public const string FILE_TEMPALTE_ARC = "Data/Char_Template_Arc.xml";
 	
 	// PlayerPrefs //
 	public const string PREFS_LAST_USER_ID = "UserID";

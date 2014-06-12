@@ -75,12 +75,12 @@ public class LevelCharacterController {
 	{
 		return FileMgr.Save( LevelCharacterController._instance , 
 		                    typeof(LevelCharacterController) , 
-		                    ConstantValue.FILE_NAME_NEXTLVEXP );
+		                    ConstantValue.FILE_NAME_NEXTLVEXP , true );
 	}
 
 	public static LevelCharacterController Load ( )
 	{
 		return FileMgr.Load( typeof(LevelCharacterController) , 
-		                    ConstantValue.FILE_NAME_NEXTLVEXP ) as LevelCharacterController;
+		                    ConstantValue.FILE_NAME_NEXTLVEXP , true ) as LevelCharacterController;
 	}
 }

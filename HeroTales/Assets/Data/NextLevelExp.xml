@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<LevelCharacterController xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NextLvExpMap>
+    <LevelExp>
+      <Level>1</Level>
+      <RequireExp>100</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>2</Level>
+      <RequireExp>300</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>3</Level>
+      <RequireExp>500</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>4</Level>
+      <RequireExp>700</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>5</Level>
+      <RequireExp>1000</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>6</Level>
+      <RequireExp>1400</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>7</Level>
+      <RequireExp>1800</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>8</Level>
+      <RequireExp>2300</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>9</Level>
+      <RequireExp>3000</RequireExp>
+    </LevelExp>
+    <LevelExp>
+      <Level>10</Level>
+      <RequireExp>4200</RequireExp>
+    </LevelExp>
+  </NextLvExpMap>
+</LevelCharacterController>
