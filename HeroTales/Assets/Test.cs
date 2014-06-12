@@ -7,7 +7,15 @@ public class Test : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ResourceMgr.LoadPrefab( ResourceMgr.PREFABS_TAG_CHARACTER );
+//		ResourceMgr.LoadPrefab( ResourceMgr.PREFABS_TAG_CHARACTER );
+
+//		ResourceMgr.LoadResource( ConstantValue.RES_TYPE_TEXT , ConstantValue.XML_TEMPLATE_CHARACTER );
+//
+//		TextAsset ss = ResourceMgr.GetResource( ConstantValue.RES_TYPE_TEXT , 
+//		                                    ConstantValue.XML_TEMPLATE_CHARACTER ,
+//		                                    ConstantValue.TAG_TEMPLATE_ASS_0 ) as UnityEngine.TextAsset;
+//
+//		Debug.Log (ss.ToString());
 
 		StartCoroutine(Spam());
 	}
@@ -23,11 +31,5 @@ public class Test : MonoBehaviour {
 		player.PCharacters.ListCharacter.Add(@char);
 
 		Player.Save(player);
-
-		LevelCharacterController.Instance.NextLvExpMap.Add( new LevelExp(1 , 100) );
-		LevelCharacterController.Instance.NextLvExpMap.Add(  new LevelExp(2 , 500) );
-		LevelCharacterController.Instance.NextLvExpMap.Add(  new LevelExp(3 , 700) );
-
-		LevelCharacterController.Save( );
 	}
 }

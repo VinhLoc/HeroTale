@@ -4,7 +4,9 @@ using System.Collections;
 [System.Serializable]
 public class PointBase {
 
+	[SerializeField]
 	private int _current;
+	[SerializeField]
 	private int _max;
 
 	public PointBase()

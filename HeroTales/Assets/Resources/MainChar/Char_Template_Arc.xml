@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <InfoStats>
+    <UID>0</UID>
+    <Name>Archer</Name>
+    <Description>Archer is a class with high SP damage and Critical</Description>
+    <ClassType>ARCHER</ClassType>
+  </InfoStats>
+  <LevelStats>
+    <Level>1</Level>
+    <Exp>
+      <Current>0</Current>
+      <Max>100</Max>
+    </Exp>
+  </LevelStats>
+  <PointStats>
+    <Health>
+      <Current>400</Current>
+      <Max>400</Max>
+    </Health>
+    <Rage>
+      <Current>0</Current>
+      <Max>250</Max>
+    </Rage>
+  </PointStats>
+  <CombatStats>
+    <Attack>9</Attack>
+    <Defend>3</Defend>
+    <SpAttack>7</SpAttack>
+    <SpDefend>2</SpDefend>
+    <MagAttack>0</MagAttack>
+    <MagDefend>0</MagDefend>
+    <Dodge>0</Dodge>
+    <Hit>4</Hit>
+    <Critical>5</Critical>
+  </CombatStats>
+</Character>

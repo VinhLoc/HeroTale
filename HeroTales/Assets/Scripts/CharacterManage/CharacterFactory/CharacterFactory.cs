@@ -32,27 +32,35 @@ public class CharacterFactory {
 			return null;
 		}
 
-		Character character = new Character( );
+		Character character = this.getCharacterTemplateByClass( classType );
 
-		character.PInfoStats.initialize( _uid++ , charName , "This is description" , classType );
-		character.PLevelStats.initialize( 1 , 200 );
+		if( character != null )
+		{
+			character.PInfoStats.UID = _uid++;
+			character.PInfoStats.Name = charName;
 
+			character.PPointStats.Health.Reset( );
+			character.PPointStats.Rage.ResetToZero( );
+		}
+		
+		Debug.Log(character.PPointStats.Health.Current);
+		
 		return character;
 	}
 
 
-	private string getResourceTagByClassType ( InfoStats.CLASS_TYPE type )
+	private Character getCharacterTemplateByClass ( InfoStats.CLASS_TYPE type )
 	{
 		switch ( type )
 		{
 		case InfoStats.CLASS_TYPE.PALADIN :
-			return ResourceMgr.TAG_MAIN_PAL_0;
+			return Character.Load( 0 , ConstantValue.FILE_TEMPALTE_PAL );
 
 		case InfoStats.CLASS_TYPE.ASSASSIN :
-			return ResourceMgr.TAG_MAIN_ASS_0;
+			return Character.Load( 0 , ConstantValue.FILE_TEMPALTE_ASS );
 
 		case InfoStats.CLASS_TYPE.ARCHER :
-			return ResourceMgr.TAG_MAIN_ARC_0;
+			return Character.Load( 0 , ConstantValue.FILE_TEMPALTE_ARC );
 		}
 
 		return null;

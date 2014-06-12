@@ -1,87 +1,145 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ResourceMgr {
 
-	public class ResourceObject{
+	public class ResourceObject : Dictionary<string,Dictionary<string,UnityEngine.Object>>
+	{
+		public void AddTo ( string tagGroup , string tagResource , UnityEngine.Object resObj )
+		{
+			Dictionary<string,UnityEngine.Object> dicObj;
+			
+			if( this.TryGetValue( tagGroup , out dicObj ) )
+			{
+				dicObj.Add( tagResource , resObj );
+			}
+			else
+			{
+				Dictionary<string,UnityEngine.Object> map = new Dictionary<string, UnityEngine.Object>();
+				map.Add(tagResource,resObj);
+				
+				this.Add( tagGroup , map );
+			}
+		}
 
-		public string Path;
-		public object RObject;
+		public UnityEngine.Object Get ( string tagGroup , string tagResource )
+		{
+			Dictionary<string,UnityEngine.Object> dicObj;
+			UnityEngine.Object obj;
+
+			if( this.TryGetValue( tagGroup , out dicObj ) )
+			{
+				if( dicObj.TryGetValue( tagResource , out obj ) )
+				{
+					return obj;
+				}
+			}
+
+			return null;
+		}
 	}
 
-	public const string PREFABS_TAG_CHARACTER = "Tag_Pre_Character";
-	public const string PREFABS_TAG_BATTLE = "Tag_Pre_Battle";
-
-
-	// Main character tags
-	public const string TAG_MAIN_PAL_0 = "Tag_Main_Pal_0";
-	public const string TAG_MAIN_ASS_0 = "Tag_Main_Ass_0";
-	public const string TAG_MAIN_ARC_0 = "Tag_Main_Arc_0";
-
-	// Battle resouce tags
-	public const string TAG_BATTLE_MOVE = "Tag_Battle_Move";
-
-	// Files //
-	public const string FILE_NAME_PLAYER = "Player{0}.xml";
-	public const string FILE_NAME_CHARACTER = "Character{0}.xm";
-	public const string FILE_NAME_NEXTLVEXP = "NextLevelExp.xml";
-
-	// PlayerPrefs //
-	public const string PREFS_LAST_USER_ID = "UserID";
-
-	// This is the TAG => Object
-	public static Dictionary<string, ResourceObject> GamePrefabs = new Dictionary<string, ResourceObject>();
-
-	private static Dictionary<string,Dictionary<string,string>> dicResourcePrefabs = new Dictionary<string, Dictionary<string,string>>()
+	public class ResourceDictionary : Dictionary<string,Dictionary<string,string>>
 	{
-		{ PREFABS_TAG_CHARACTER , new Dictionary<string,string>(){ 
-				{ TAG_MAIN_PAL_0 , @"MainChar/Char_Main_Pal_0" },
-				{ TAG_MAIN_ASS_0 , @"MainChar/Char_Main_Ass_0" },
-				{ TAG_MAIN_ARC_0 , @"MainChar/Char_Main_Arc_0" } }
+		public ResourceDictionary(Type resourceType)
+		{
+			this.ResourceType = resourceType;
+		}
+
+		public Type ResourceType;
+	}
+	
+	// This is the TAG => Object
+	public static Dictionary<string, ResourceObject> GameResourcesLoaded = new Dictionary<string, ResourceObject>();
+
+
+	private static Dictionary<string , ResourceDictionary> ResourcesMap = new Dictionary<string, ResourceDictionary>()
+	{
+		{
+			ConstantValue.RES_TYPE_GAME_OBJECT , new ResourceDictionary(typeof(GameObject))
+			{
+				{
+					ConstantValue.PREFABS_TAG_BATTLE , new Dictionary<string,string>()
+					{
+						{ ConstantValue.TAG_BATTLE_MOVE , @"Battle/Move" }
+					}
+				}
+			}
 		},
-		{ PREFABS_TAG_BATTLE , new Dictionary<string,string>(){
-				{ TAG_BATTLE_MOVE , @"Battle/Move" } }
+		{
+			ConstantValue.RES_TYPE_TEXT , new ResourceDictionary(typeof(TextAsset))
+			{
+//				{
+//					ConstantValue.XML_TEMPLATE_CHARACTER , new Dictionary<string,string >()
+//					{
+//						{ ConstantValue.TAG_TEMPLATE_PAL_0 , @"MainChar/Char_Template_Pal" },
+//						{ ConstantValue.TAG_TEMPLATE_ASS_0 , @"MainChar/Char_Template_Ass" },
+//						{ ConstantValue.TAG_TEMPLATE_ARC_0 , @"MainChar/Char_Template_Arc" }
+//					}
+//				}
+			}
 		}
 	};
 
-	public static GameObject GetPrefab ( string tag )
+	public static void LoadResource ( string resType , params string[] resGroups )
 	{
-		ResourceObject resObj = null;
-
-		if( GamePrefabs.TryGetValue( tag , out resObj ) )
+		ResourceDictionary resDic = null;
+		ResourcesMap.TryGetValue( resType , out resDic );
+		if( resDic != null )
 		{
-			return resObj.RObject as GameObject;
+			Dictionary<string,string> listResources = null;
+			for( int i = 0 , count = resGroups.Length ; i < count ; ++i )
+			{
+				if( resDic.TryGetValue( resGroups[i] , out listResources ) )
+				{
+					Load( resType, resGroups[i] , listResources );
+				}
+			}
+		}
+	}
+
+	public static UnityEngine.Object GetResource( string resType , string resGroup , string resTag )
+	{
+		ResourceObject resObj;
+
+		if( GameResourcesLoaded.TryGetValue( resType , out resObj ) )
+		{
+			return resObj.Get( resGroup , resTag );
 		}
 
 		return null;
 	}
-
-	public static void LoadPrefab ( params string[] tags )
+ 
+	private static void Load ( string resType , string resGroup , Dictionary<string,string> dicResource )
 	{
-		Dictionary<string,string> listPrefabsPaths = null;
-		for( int i = 0 , count = tags.Length ; i < count ; ++i )
+		UnityEngine.Object res;
+		foreach( var pair in dicResource )
 		{
-			if( dicResourcePrefabs.TryGetValue( tags[i] , out listPrefabsPaths ) )
+			res = Resources.Load(pair.Value);
+
+			if( res != null )
 			{
-				LoadPrefab( listPrefabsPaths );
+				AddToGameResources( resType , resGroup , pair.Key , res );
 			}
 		}
 	}
 
-
-	private static void LoadPrefab ( Dictionary<string,string> dicPaths )
+	private static void AddToGameResources ( string resType , string resGroup , string resTag , UnityEngine.Object res )
 	{
-		GameObject pre = null;
+		ResourceObject resObj;
 
-		foreach( KeyValuePair<string,string> pair in dicPaths )
+		if( GameResourcesLoaded.TryGetValue( resType , out resObj ) )
 		{
-			pre = Resources.Load( pair.Value ) as GameObject;
+			resObj.AddTo( resGroup , resTag , res );
+		}
+		else
+		{
+			resObj = new ResourceObject( );
+			resObj.AddTo( resGroup , resTag , res );
 
-			if( pre )
-			{
-				GamePrefabs.Add( pair.Key , new ResourceObject() { Path = pair.Value , RObject = pre } );
-			}
+			GameResourcesLoaded.Add( resType , resObj );
 		}
 	}
 }

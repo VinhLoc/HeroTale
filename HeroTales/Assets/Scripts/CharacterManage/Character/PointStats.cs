@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class PointStats {
 
 	[SerializeField]
 	public PointBase Health = new PointBase();
 	[SerializeField]
 	public PointBase Rage = new PointBase();
-
+	
 	public bool HasDie
 	{
 		get{

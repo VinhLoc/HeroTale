@@ -24,9 +24,9 @@ public class BattleActionController : MonoBehaviour {
 
 	void Start ( )
 	{
-		ResourceMgr.LoadPrefab( ResourceMgr.PREFABS_TAG_BATTLE );
+//		ResourceMgr.LoadPrefab( ResourceMgr.PREFABS_TAG_BATTLE );
 
-		PreMove = ResourceMgr.GetPrefab(ResourceMgr.TAG_BATTLE_MOVE);
+//		PreMove = ResourceMgr.GetPrefab(ResourceMgr.TAG_BATTLE_MOVE);
 	}
 
 	// Move Action

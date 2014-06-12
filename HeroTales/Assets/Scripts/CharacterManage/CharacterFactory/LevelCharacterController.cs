@@ -53,13 +53,31 @@ public class LevelCharacterController {
 
 	public LevelExpMap NextLvExpMap = new LevelExpMap ( );
 
+	public int GetExpBaseOnLevel ( int level )
+	{
+		LevelExp levelExp;
+		for( int i = 0 , count = NextLvExpMap.Count ; i < count ; ++i )
+		{
+			levelExp = NextLvExpMap[i];
+			if( levelExp.Level == level )
+			{
+				return levelExp.RequireExp;
+			}
+		}
+
+		return 0;
+	}
+
 	public static bool Save ( )
 	{
-		return FileMgr.Save( LevelCharacterController._instance , typeof(LevelCharacterController) , ResourceMgr.FILE_NAME_NEXTLVEXP );
+		return FileMgr.Save( LevelCharacterController._instance , 
+		                    typeof(LevelCharacterController) , 
+		                    ConstantValue.FILE_NAME_NEXTLVEXP );
 	}
 
 	public static LevelCharacterController Load ( )
 	{
-		return FileMgr.Load( typeof(LevelCharacterController) , ResourceMgr.FILE_NAME_NEXTLVEXP ) as LevelCharacterController;
+		return FileMgr.Load( typeof(LevelCharacterController) , 
+		                    ConstantValue.FILE_NAME_NEXTLVEXP ) as LevelCharacterController;
 	}
 }

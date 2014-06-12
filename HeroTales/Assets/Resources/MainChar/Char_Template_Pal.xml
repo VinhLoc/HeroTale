@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <InfoStats>
+    <UID>0</UID>
+    <Name>Paladin</Name>
+    <Description>Paladin is a class with high defend and heath point</Description>
+    <ClassType>PALADIN</ClassType>
+  </InfoStats>
+  <LevelStats>
+    <Level>1</Level>
+    <Exp>
+      <Current>0</Current>
+      <Max>100</Max>
+    </Exp>
+  </LevelStats>
+  <PointStats>
+    <Health>
+      <Current>800</Current>
+      <Max>800</Max>
+    </Health>
+    <Rage>
+      <Current>0</Current>
+      <Max>250</Max>
+    </Rage>
+  </PointStats>
+  <CombatStats>
+    <Attack>7</Attack>
+    <Defend>8</Defend>
+    <SpAttack>4</SpAttack>
+    <SpDefend>7</SpDefend>
+    <MagAttack>0</MagAttack>
+    <MagDefend>0</MagDefend>
+    <Dodge>1</Dodge>
+    <Hit>2</Hit>
+    <Critical>1</Critical>
+  </CombatStats>
+</Character>

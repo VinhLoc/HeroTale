@@ -11,23 +11,42 @@ public class Character {
 	[XmlElement("LevelStats")]
 	public LevelStats PLevelStats { get; set; }
 
+	[XmlElement("PointStats")]
+	public PointStats PPointStats { get; set; }
+
+	[XmlElement("CombatStats")]
+	public CombatStats PCombatStats { get; set; }
+
 	public Character ()
 	{
 		PInfoStats = new InfoStats( );
 		PLevelStats = new LevelStats( );
+		PPointStats = new PointStats( );
+		PCombatStats = new CombatStats( );
 	}
 
-	public static bool Save ( Character character )
+	public static bool Save ( Character character , string sForceFilePath = "" )
 	{
-		string sPath = string.Format( ResourceMgr.FILE_NAME_CHARACTER , character.PInfoStats.UID  );
-		
-		return FileMgr.Save( character , typeof(Character) , sPath );
+		string sPath = "";
+		bool bForcePath = !string.IsNullOrEmpty(sForceFilePath);
+		if( !bForcePath )
+			sPath = string.Format( ConstantValue.FILE_NAME_CHARACTER , character.PInfoStats.UID  );
+		else
+			sPath = sForceFilePath;
+
+		return FileMgr.Save( character , typeof(Character) , sPath , bForcePath );
 	}
 
-	public static Character Load ( int uid )
+	public static Character Load ( int uid , string sForceFilePath = "" )
 	{
-		string sPath = string.Format( ResourceMgr.FILE_NAME_CHARACTER , uid  );
+		string sPath = "";
+		bool bForcePath = !string.IsNullOrEmpty(sForceFilePath);
 
-		return FileMgr.Load( typeof(Character) , sPath ) as Character;
+		if( !bForcePath )
+			sPath = string.Format( ConstantValue.FILE_NAME_CHARACTER , uid  );
+		else
+			sPath = sForceFilePath;
+
+		return FileMgr.Load( typeof(Character) , sPath , bForcePath ) as Character;
 	}
 }

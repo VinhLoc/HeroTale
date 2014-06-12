@@ -32,9 +32,9 @@ public class Player
 
 	public static bool Save (Player player)
 	{
-		string sPath = string.Format( ResourceMgr.FILE_NAME_PLAYER , player.PAccount.UserID );
+		string sPath = string.Format( ConstantValue.FILE_NAME_PLAYER , player.PAccount.UserID );
 
-		PlayerPrefs.SetInt(ResourceMgr.PREFS_LAST_USER_ID , (int)player.PAccount.UserID );
+		PlayerPrefs.SetInt(ConstantValue.PREFS_LAST_USER_ID , (int)player.PAccount.UserID );
 		PlayerPrefs.Save();
 
 		return FileMgr.Save( player , typeof(Player) , sPath );
@@ -42,7 +42,7 @@ public class Player
 
 	public static Player Load (int userId)
 	{
-		string sPath = string.Format( ResourceMgr.FILE_NAME_PLAYER , userId );
+		string sPath = string.Format( ConstantValue.FILE_NAME_PLAYER , userId );
 
 		return FileMgr.Load( typeof(Player) , sPath ) as Player;
 	}

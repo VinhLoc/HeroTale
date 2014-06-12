@@ -6,11 +6,15 @@ using System.Xml.Serialization;
 
 public class FileMgr {
 
-	public static bool Save ( object _object , Type type , string path )
+	public static bool Save ( object _object , Type type , string path , bool bForcePath = false )
 	{
 		try
 		{
-			string sDataFile = System.IO.Path.Combine (Application.persistentDataPath, path);
+			string sDataFile = "";
+			if( !bForcePath )
+				sDataFile = System.IO.Path.Combine (Application.persistentDataPath, path);
+			else
+				sDataFile = Application.dataPath + "/" + path;
 			
 			Debug.Log(sDataFile);
 			
@@ -30,12 +34,17 @@ public class FileMgr {
 		return true;
 	}
 
-	public static object Load ( Type type , string path )
+	public static object Load ( Type type , string path , bool bForcePath = false )
 	{
 		object _object = null;
 		try
 		{
-			string sDataFile = System.IO.Path.Combine (Application.persistentDataPath, path);
+			string sDataFile = ""; 
+
+			if( !bForcePath )
+				sDataFile = System.IO.Path.Combine (Application.persistentDataPath, path);
+			else
+				sDataFile = Application.dataPath + "/" + path;
 			
 			Debug.Log(sDataFile);
 			
