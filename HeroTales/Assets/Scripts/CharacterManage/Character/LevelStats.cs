@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelStats : MonoBehaviour {
+[System.Serializable]
+public class LevelStats {
 
 	public int Level;
 	[SerializeField]
 	public PointBase Exp = new PointBase();
+
+	public LevelStats ()
+	{
+
+	}
 
 	public void initialize ( int level , int nextLVExp )
 	{

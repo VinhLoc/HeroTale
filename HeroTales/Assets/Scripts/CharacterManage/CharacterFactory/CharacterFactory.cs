@@ -24,16 +24,18 @@ public class CharacterFactory {
 
 	private ulong _uid;
 
-	public GameObject createNewCharacter ( InfoStats.CLASS_TYPE classType , string charName )
+	public Character createNewCharacter ( InfoStats.CLASS_TYPE classType , string charName )
 	{
-		string tag = getResourceTagByClassType(classType);
+		if( _uid == ulong.MaxValue )
+		{
+			Debug.LogError("ID is out of range");
+			return null;
+		}
 
-		GameObject character = GameObject.Instantiate( ResourceMgr.GetPrefab( tag ) ) as GameObject;
-		character.name = charName;
+		Character character = new Character( );
 
-		InfoStats info = character.GetComponent<InfoStats>();
-		info.UID = _uid++;
-		info.Name = charName;
+		character.PInfoStats.initialize( _uid++ , charName , "This is description" , classType );
+		character.PLevelStats.initialize( 1 , 200 );
 
 		return character;
 	}

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InfoStats : MonoBehaviour {
+[System.Serializable]
+public class InfoStats {
 
 	public enum CLASS_TYPE
 	{
@@ -9,6 +10,11 @@ public class InfoStats : MonoBehaviour {
 		PALADIN,
 		ASSASSIN,
 		ARCHER
+	}
+
+	public InfoStats ( )
+	{
+
 	}
 
 	public ulong UID;

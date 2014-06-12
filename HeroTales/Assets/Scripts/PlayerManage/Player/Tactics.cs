@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class Tactics {
 	
 	public Slots SlotsDeployment = new Slots();
@@ -29,7 +30,7 @@ public class Tactics {
 	}
 }
 
-
+[System.Serializable]
 public class Slot
 {
 	public int Index = -1;
@@ -58,6 +59,7 @@ public class Slot
 	}
 }
 
+[System.Serializable]
 public class Slots : List<Slot>
 {
 	public int NumAllow;

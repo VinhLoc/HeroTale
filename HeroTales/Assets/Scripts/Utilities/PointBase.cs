@@ -4,8 +4,13 @@ using System.Collections;
 [System.Serializable]
 public class PointBase {
 
-	public int _current;
-	public int _max;
+	private int _current;
+	private int _max;
+
+	public PointBase()
+	{
+
+	}
 
 	public int Current
 	{

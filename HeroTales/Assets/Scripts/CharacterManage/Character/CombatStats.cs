@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CombatStats : MonoBehaviour {
+public class CombatStats {
 
 	public int Attack;
 	public int Defend;

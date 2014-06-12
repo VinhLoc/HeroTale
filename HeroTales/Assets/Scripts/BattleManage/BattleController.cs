@@ -147,11 +147,11 @@ public class BattleController : MonoBehaviour {
 				if( !slot.IsEmpty )
 				{
 					attacker = slot.Get();
-					PointStats point = attacker.GetComponent<PointStats>();
-					if ( point != null && !point.HasDie )
-					{
-						//TODO do attacking
-					}
+//					PointStats point = attacker.GetComponent<PointStats>();
+//					if ( point != null && !point.HasDie )
+//					{
+//						//TODO do attacking
+//					}
 				}
 			}
 		}while(!hasEnd);

@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml.Serialization;
 
+[System.Serializable]
 public class AccountInfo {
 
 	private ulong _userID;
 	private string _username;
+
+	public AccountInfo ( )
+	{
+
+	}
 
 	public ulong UserID 
 	{ 

@@ -22,6 +22,14 @@ public class ResourceMgr {
 	// Battle resouce tags
 	public const string TAG_BATTLE_MOVE = "Tag_Battle_Move";
 
+	// Files //
+	public const string FILE_NAME_PLAYER = "Player{0}.xml";
+	public const string FILE_NAME_CHARACTER = "Character{0}.xm";
+	public const string FILE_NAME_NEXTLVEXP = "NextLevelExp.xml";
+
+	// PlayerPrefs //
+	public const string PREFS_LAST_USER_ID = "UserID";
+
 	// This is the TAG => Object
 	public static Dictionary<string, ResourceObject> GamePrefabs = new Dictionary<string, ResourceObject>();
 

@@ -34,7 +34,6 @@ public class AccountMgr {
 		}
 
 		Player player = new Player( );
-		player.Initialize( );
 
 		player.PAccount.initialize( _uid++ , username );
 		player.PCharacters.initialize( 9 , 1 );

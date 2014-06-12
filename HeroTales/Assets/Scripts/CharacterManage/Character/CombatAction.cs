@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CombatAction : MonoBehaviour {
+public class CombatAction  {
 
 	public enum WEAPON_TYPE
 	{

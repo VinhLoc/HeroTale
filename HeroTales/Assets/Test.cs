@@ -16,30 +16,18 @@ public class Test : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(1);
 
-		
 		Player player = AccountMgr.Instance.createNewAccount("BrokenHell");
 
-		for( int i = 0 ; i < 9 ; ++i )
-		{
-			GameObject mainChar = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ASSASSIN , player.PAccount.Username + i.ToString() );
-			player.PCharacters.Characters.Add(mainChar);
-			
-			GameObject @charInside;
-			player.PTactis.SlotsDeployment.TryAddToSlot( i , mainChar , out @charInside );
-		}
+		Character @char = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ASSASSIN , "BrokenHell" );
 
-		Player boss = AccountMgr.Instance.createNewAccount("FinalBoss");
+		player.PCharacters.ListCharacter.Add(@char);
 
-		for( int i = 0 ; i < 9 ; ++i )
-		{
-			GameObject mainChar = CharacterFactory.Instance.createNewCharacter( InfoStats.CLASS_TYPE.ARCHER , boss.PAccount.Username + i.ToString() );
-			boss.PCharacters.Characters.Add(mainChar);
-			
-			GameObject @charInside;
-			boss.PTactis.SlotsDeployment.TryAddToSlot( i , mainChar , out @charInside );
-		}
+		Player.Save(player);
 
+		LevelCharacterController.Instance.NextLvExpMap.Add( new LevelExp(1 , 100) );
+		LevelCharacterController.Instance.NextLvExpMap.Add(  new LevelExp(2 , 500) );
+		LevelCharacterController.Instance.NextLvExpMap.Add(  new LevelExp(3 , 700) );
 
-		BattleController.Instance.AutoDeploy( player.PTactis.SlotsDeployment , boss.PTactis.SlotsDeployment );
+		LevelCharacterController.Save( );
 	}
 }

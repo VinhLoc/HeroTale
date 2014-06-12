@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PointStats : MonoBehaviour {
+public class PointStats {
 
 	[SerializeField]
 	public PointBase Health = new PointBase();

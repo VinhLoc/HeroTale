@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class BalanceInfo {
 
 	private int _gold;
 	private int _ruby;
 	private int _diamond;
+
+	public BalanceInfo ( )
+	{
+
+	}
 
 	public int Gold
 	{
