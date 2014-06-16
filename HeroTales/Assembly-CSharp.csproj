@@ -48,7 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BattleManage\BattleActionController.cs" />
      <Compile Include="Assets\Scripts\BattleManage\BattleController.cs" />
-     <Compile Include="Assets\Scripts\BattleManage\BattleTurnController.cs" />
+     <Compile Include="Assets\Scripts\BattleManage\BattleRecordController.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\Character\Character.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\Character\CombatAction.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\Character\CombatStats.cs" />

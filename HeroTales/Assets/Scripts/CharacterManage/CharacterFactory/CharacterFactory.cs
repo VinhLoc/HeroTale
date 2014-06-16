@@ -38,13 +38,8 @@ public class CharacterFactory {
 		{
 			character.PInfoStats.UID = _uid++;
 			character.PInfoStats.Name = charName;
-
-			character.PPointStats.Health.Reset( );
-			character.PPointStats.Rage.ResetToZero( );
 		}
-		
-		Debug.Log(character.PPointStats.Health.Current);
-		
+
 		return character;
 	}
 

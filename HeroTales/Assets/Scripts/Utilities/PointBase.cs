@@ -24,7 +24,8 @@ public class PointBase {
 			if( value < 0 )
 			{
 				_current = 0;
-			}else if( value > _max )
+			}
+			else if( _max != 0 && _current > _max )
 			{
 				_current = _max;
 			}
@@ -40,6 +41,10 @@ public class PointBase {
 		}
 		set{
 			_max = value;
+			if( _current > _max )
+			{
+				_current = _max;
+			}
 		}
 	}
 

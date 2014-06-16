@@ -33,14 +33,35 @@ public class Tactics {
 [System.Serializable]
 public class Slot
 {
+	private Character _character = null;
 	public int Index = -1;
-	public bool IsEmpty = true;
-	private GameObject Character = null;
-
-	public void Add ( GameObject @char )
+	public bool IsEmpty
 	{
-		Character = @char;
-		IsEmpty = false;
+		get{
+			if( _character == null )
+				return true;
+			if( _character.PPointStats.HasDie )
+				return true;
+
+			return false;
+		}
+	}
+
+	public Character Character
+	{
+		set{
+			if( value == null )
+			{
+				return;
+			}
+			else
+			{
+				_character = value;
+			}
+		}
+		get{
+			return _character;
+		}
 	}
 
 	public void Remove ( )
@@ -49,13 +70,6 @@ public class Slot
 		{
 			Character = null;
 		}
-
-		IsEmpty = true;
-	}
-
-	public GameObject Get ( )
-	{
-		return IsEmpty ? null : Character;
 	}
 }
 
@@ -90,26 +104,32 @@ public class Slots : List<Slot>
 		{
 			Slot slot = new Slot();
 			slot.Index = i;
-			slot.IsEmpty = true;
 			this.Add(slot);
 		}
 	}
 
-	public bool TryAddToSlot ( int index , GameObject @char , out GameObject @charInside )
+	/// <summary>
+	/// Tries to add character to the specific slot.
+	/// </summary>
+	/// <returns>The Character which is had been inside this slot</returns>
+	/// <param name="index">Index.</param>
+	/// <param name="char">Char.</param>
+	public Character TryAddToSlot ( int index , Character @char )
 	{
-		@charInside = null;
 		if( index >= this.Count || index < 0 )
-			return false;
+			return null;
 
 		if( this.CurrentFilled >= this.NumAllow )
-			return false;
+			return null;
+
+		Character @charInside = null;
 
 		if( !this[index].IsEmpty )
-			@charInside = this[index].Get();
+			@charInside = this[index].Character;
 
-		this[index].Add(@char);
+		this[index].Character = @char;
 
-		return true;
+		return @charInside;
 	}
 
 	public void TryRemoveFromSlot ( int index )
@@ -118,21 +138,5 @@ public class Slots : List<Slot>
 			return;
 
 		this[index].Remove();
-	}
-
-	public void Clone ( Slots slots ) 
-	{
-		Slot slot = null;
-		GameObject charInsd;
-
-		for( int i = 0 , count = Mathf.Min( this.Count , slots.Count ) ; i < count ; ++i )
-		{
-			slot = slots[i];
-
-			if( !slot.IsEmpty )
-			{
-				this.TryAddToSlot( i , GameObject.Instantiate( slot.Get() ) as GameObject , out charInsd );
-			}
-		}
 	}
 }
