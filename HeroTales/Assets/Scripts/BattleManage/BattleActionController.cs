@@ -22,19 +22,13 @@ public class BattleActionController : MonoBehaviour {
 		_instance = this;
 	}
 
-	void Start ( )
-	{
-//		ResourceMgr.LoadPrefab( ResourceMgr.PREFABS_TAG_BATTLE );
-
-//		PreMove = ResourceMgr.GetPrefab(ResourceMgr.TAG_BATTLE_MOVE);
-	}
-
 	// Move Action
 	public float StartMoveDeltaPosition = 4;
-	public Vector3 MoveObjPosition = new Vector3( -2 , 0 , 0 );
+	public Vector3 MoveObjPositionLeft = new Vector3( -2 , 0 , 0 );
+	public Vector3 MoveObjPositionRight = new Vector3( 2 , 0 , 0 );
 
 	public float ActionMoveDuration = 0.4f;
-	private GameObject PreMove;
+	public GameObject Prefab_ObjMove;
 
 	private const string MOVE_OBJ_NAME = "MoveObj";
 
@@ -42,10 +36,11 @@ public class BattleActionController : MonoBehaviour {
 	{
 		bool isLeft = type == BattleController.DEPLOY_TYPE.LEFT;
 
-		GameObject moveObj = GameObject.Instantiate( PreMove ) as GameObject;
+		GameObject moveObj = GameObject.Instantiate( Prefab_ObjMove ) as GameObject;
 		moveObj.name = MOVE_OBJ_NAME;
 		moveObj.transform.parent = character;
-		moveObj.transform.localPosition = MoveObjPosition;
+		moveObj.transform.localPosition = isLeft ? MoveObjPositionLeft : MoveObjPositionRight;
+		moveObj.transform.localScale = new Vector3( isLeft ? 1 : -1 , 1 , 1 );
 
 		Vector3 endPos = character.localPosition;
 		Vector3 startPos = new Vector3( isLeft ?
@@ -61,25 +56,14 @@ public class BattleActionController : MonoBehaviour {
 		            				"islocal" , true ,
 		            				"oncomplete" , "onEndMoveAction" ,
 		            				"oncompletetarget" , this.gameObject,
-		            				"oncompleteparams" , character) );
-
-		StartCoroutine( onStartBattle() );
+		            				"oncompleteparams" , moveObj) );
 	}
 
-	void onEndMoveAction ( object character )
+	void onEndMoveAction ( object move )
 	{
-		Transform @char = character as Transform;
+		GameObject moveObj = move as UnityEngine.GameObject;
 
-		Transform moveObj = @char.FindChild(MOVE_OBJ_NAME);
-		if( moveObj )
-		{
-			Destroy(moveObj.gameObject);
-		}
-	}
-
-	IEnumerator onStartBattle ( )
-	{
-		yield return new WaitForSeconds( this.ActionMoveDuration );
+		Destroy(moveObj);
 
 
 	}

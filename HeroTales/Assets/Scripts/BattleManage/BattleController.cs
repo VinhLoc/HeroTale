@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BattleController : MonoBehaviour {
+public class BattleController{
 	
 	private static BattleController _instance = null;
 
@@ -18,25 +18,18 @@ public class BattleController : MonoBehaviour {
 		}
 	}
 
-	void Awake ( )
-	{
-		_instance = this;
-	}
-
 	public enum DEPLOY_TYPE
 	{
 		LEFT,
 		RIGHT
 	}
 
-//	private bool EndGame = false;
 	private int TurnCount = 0;
 
 	public void CalculateResult ( Slots lSlot , Slots rSlot )
 	{
 		CalculateTurn ( lSlot , rSlot );
 
-		int i = 0;
 		int count1st = SlotTurn1st.Count;
 		int count2nd = SlotTurn2nd.Count;
 		int index1st = 0;
@@ -46,13 +39,11 @@ public class BattleController : MonoBehaviour {
 		bool bEndGame = false;
 		bool bOutOfMove = false;
 
-		Character attacker;
-		Character defender;
-		Slot slot;
-
 		TurnCount = 1;
 
 		BattleRecordController.Instance.Reset( );
+
+		bool bWin = false;
 
 		while(!bEndGame)
 		{
@@ -62,20 +53,48 @@ public class BattleController : MonoBehaviour {
 
 			if(bFirstTurn)
 			{
+				BattleRecordController.RecrodIsLeft(bLFirst);
+
 				bFirstTurn = !DoTurn( ref index1st , ref index2nd , count1st , SlotTurn1st , SlotTurn2nd , out bOutOfMove , out bEndGame );
 
 				if( index2nd >= SlotTurn2nd.Count ) // they had reach max
 				{
 					bFirstTurn = true;
 				}
+
+				if( bEndGame )
+				{
+					if( bLFirst )
+					{
+						bWin = true;
+					}
+					else
+					{
+						bWin = false;
+					}
+				}
 			}
 			else
 			{
+				BattleRecordController.RecrodIsLeft(!bLFirst);
+
 				bFirstTurn = DoTurn( ref index2nd , ref index1st , count2nd , SlotTurn2nd , SlotTurn1st , out bOutOfMove , out bEndGame );
 
 				if( index1st >= SlotTurn1st.Count )
 				{
 					bFirstTurn = false;
+				}
+
+				if( bEndGame )
+				{
+					if( bLFirst )
+					{
+						bWin = false;
+					}
+					else
+					{
+						bWin = true;
+					}
 				}
 			}
 
@@ -94,12 +113,13 @@ public class BattleController : MonoBehaviour {
 
 			if(bEndGame)
 			{
-				Debug.Log("Endgame here");
+				Debug.Log("END GAME");
 			}
 		}
 
 		Debug.Log("Turn count : " + TurnCount );
 
+		BattleRecordController.Instance.WinGameResult = bWin;
 		BattleRecords records = BattleRecordController.Instance.PBattleRecords;
 
 		foreach( var record in records )
@@ -116,22 +136,35 @@ public class BattleController : MonoBehaviour {
 			Debug.Log("Defender HP : " + record.DefenderSlot.CharHealth + "/" + record.DefenderSlot.CharMaxHealth );
 			Debug.Log("-------------------------");
 		}
+
+		if( bWin )
+		{
+			Debug.Log("You win");
+		}
+		else
+		{
+			Debug.Log("You lose");
+		}
+
+		lSlot.Reset();
+		rSlot.Reset();
 	}
 	
 	#region Calculate Turn helper
 
 	private Slots SlotTurn1st;
 	private Slots SlotTurn2nd;
+	private bool bLFirst;
 
 	private void CalculateTurn ( Slots lSlot , Slots rSlot )
 	{
 		SlotTurn1st = null;
 		SlotTurn2nd = null;
 
-		bool bFirst = false; //Random.Range(0,2) == 0 ? true : false;
+		bLFirst = false; //Random.Range(0,2) == 0 ? true : false;
 
-		SlotTurn1st = bFirst ? lSlot : rSlot ;
-		SlotTurn2nd = bFirst ? rSlot : lSlot ;
+		SlotTurn1st = bLFirst ? lSlot : rSlot ;
+		SlotTurn2nd = bLFirst ? rSlot : lSlot ;
 	}
 
 	#endregion
@@ -294,132 +327,4 @@ public class BattleController : MonoBehaviour {
 	#region Others helper
 
 	#endregion
-
-//	public Transform DeploymentLeft;
-//	public Transform DeploymentRight;
-//	int CurrentTurn = 0;
-//
-//	Slots ArmyLeft;
-//	Slots ArmyRight;
-//
-//	public void AutoDeploy ( Slots lSlots , Slots rSlots )
-//	{
-//		if( lSlots != null )
-//		{
-//			BattleTurnController.Instance.CloneLSlot( lSlots );
-////			Deploy( DEPLOY_TYPE.LEFT , BattleTurnController.Instance.LGroup );
-//		}
-//
-//		if( rSlots != null )
-//		{
-//			BattleTurnController.Instance.CloneRSlot( rSlots );
-////			Deploy( DEPLOY_TYPE.RIGHT , BattleTurnController.Instance.RGroup );
-//		}
-//
-//		CalculateResult( );
-//	}
-//
-//	private void Deploy ( DEPLOY_TYPE type , Slots slots )
-//	{
-////		Transform deployment = type == DEPLOY_TYPE.LEFT ? DeploymentLeft : DeploymentRight;
-////
-////		if( null == deployment )
-////			return;
-////
-////		GameObject character = null;
-////		Slot slot = null;
-////		Transform child = null;
-////
-////		BattleActionController btlActController = BattleActionController.Instance;
-////
-////		for( int i = 0 , count = Mathf.Min( slots.Count , deployment.childCount ) ; i < count ; ++i )
-////		{
-////			child = deployment.GetChild(i);
-////			slot = slots[i];
-////			if( !slot.IsEmpty )
-////			{
-////				character = slot.Get();
-////				Transform t = character.transform;
-////
-////				t.parent = deployment.GetChild(i);
-////				t.localPosition = Vector3.zero;
-////				if( type == DEPLOY_TYPE.RIGHT )
-////				{
-////					t.localScale = new Vector3(-1 , 1 , 1);
-////				}
-////
-////				//TODO run show up action
-////				btlActController.PlayActionDeployment( t , type );
-////			}
-////		}
-//	}
-//
-//	public void PlayTurn ( )
-//	{
-//		CurrentTurn += 1;
-//	}
-//
-//	private int CurrentStep = 0;
-//
-//	private void PlayStep ( bool bFirstStep = false )
-//	{
-//		if( bFirstStep )
-//		{
-//			CurrentStep = 1;
-//		}
-//
-//		if( this.CurrentStep % 2 != 0 ) // A 1 , 3 , 5 ...step will be deploytment left step
-//		{
-//
-//		}
-//		else // 2 , 4 , 6 ...step will be deployment right step
-//		{
-//
-//		}
-//	}
-//
-//
-//	// Battle result //
-//
-//	public class BattleResult
-//	{
-//		GameObject Attacker;
-//		GameObject Defender;
-//		AttackInfo Info;
-//
-//		public class AttackInfo
-//		{
-//			public int Damage;
-//			public bool isMiss;
-//		}
-//	}
-//
-//	private void CalculateResult ( )
-//	{
-//		BattleTurnController.Instance.CalculateTurn();
-//
-//		List<Slot> list = BattleTurnController.Instance.ListTurn;
-//
-//		bool hasEnd = false;
-//
-//		do
-//		{
-//			Slot slot;
-//			GameObject attacker;
-//			GameObject defender;
-//			for( int i = 0 , count = list.Count; i < count ; ++i )
-//			{
-//				slot = list[i];
-//				if( !slot.IsEmpty )
-//				{
-////					attacker = slot.Get();
-////					PointStats point = attacker.GetComponent<PointStats>();
-////					if ( point != null && !point.HasDie )
-////					{
-////						//TODO do attacking
-////					}
-//				}
-//			}
-//		}while(!hasEnd);
-//	}
 }

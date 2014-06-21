@@ -34,4 +34,5 @@
     <Hit>4</Hit>
     <Critical>5</Critical>
   </CombatStats>
+  <SpriteLinkerTag>Archer</SpriteLinkerTag>
 </Character>

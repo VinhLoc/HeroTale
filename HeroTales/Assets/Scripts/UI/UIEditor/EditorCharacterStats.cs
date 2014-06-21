@@ -8,6 +8,7 @@ public class EditorCharacterStats : MonoBehaviour {
 	public LevelStats LevelInfo;
 	public PointStats PointInfo;
 	public CombatStats CombatInfo;
+	public SpriteIdLinkerTag SpriteIdTag;
 
 
 	public void Start ( )
@@ -24,6 +25,7 @@ public class EditorCharacterStats : MonoBehaviour {
 		character.PPointStats = PointInfo;
 		character.PCombatStats = CombatInfo;
 		character.PLevelStats.initialize ( level , exp );
+		character.SpriteIdTag = this.SpriteIdTag;
 
 		Character.Save( character , this.FilePath );
 	}

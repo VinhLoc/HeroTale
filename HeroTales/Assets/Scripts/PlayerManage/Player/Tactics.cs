@@ -139,4 +139,17 @@ public class Slots : List<Slot>
 
 		this[index].Remove();
 	}
+
+	public void Reset () 
+	{
+		Slot slot;
+		for( int i = 0 , count = this.Count ; i < count ; ++i )
+		{
+			slot = this[i];
+			if( null != slot.Character )
+			{
+				slot.Character.Revive ( );
+			}
+		}
+	}
 }

@@ -17,12 +17,21 @@ public class Character {
 	[XmlElement("CombatStats")]
 	public CombatStats PCombatStats { get; set; }
 
+	[XmlElement("SpriteLinkerTag")]
+	public SpriteIdLinkerTag SpriteIdTag { get; set; }
+
 	public Character ()
 	{
 		PInfoStats = new InfoStats( );
 		PLevelStats = new LevelStats( );
 		PPointStats = new PointStats( );
 		PCombatStats = new CombatStats( );
+	}
+
+	public void Revive ( )
+	{
+		PPointStats.Health.Reset( );
+		PPointStats.Rage.ResetToZero( );
 	}
 
 	public static bool Save ( Character character , string sForceFilePath = "" )

@@ -57,6 +57,11 @@
      <Compile Include="Assets\Scripts\CharacterManage\Character\PointStats.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\CharacterFactory\CharacterFactory.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\CharacterFactory\LevelCharacterController.cs" />
+     <Compile Include="Assets\Scripts\Effect\AttackEfx\SplashEfx.cs" />
+     <Compile Include="Assets\Scripts\Effect\CustomFade.cs" />
+     <Compile Include="Assets\Scripts\Effect\EffectBase.cs" />
+     <Compile Include="Assets\Scripts\Effect\EffectMgr.cs" />
+     <Compile Include="Assets\Scripts\Effect\SpriteFade.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\AccountMgr\AccountMgr.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\Player\AccountInfo.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\Player\BalanceInfo.cs" />
@@ -67,8 +72,13 @@
      <Compile Include="Assets\Scripts\PlayerManage\Player\Tactics.cs" />
      <Compile Include="Assets\Scripts\Scenes\SelectChar\ButtonSelectChar.cs" />
      <Compile Include="Assets\Scripts\Scenes\SelectChar\SelectCharControl.cs" />
-     <Compile Include="Assets\Scripts\UI\EditorCharacterStats.cs" />
-     <Compile Include="Assets\Scripts\UI\EditorLevelExp.cs" />
+     <Compile Include="Assets\Scripts\UI\UIBattle\UIBattleAnimation.cs" />
+     <Compile Include="Assets\Scripts\UI\UIBattle\UIBattleController.cs" />
+     <Compile Include="Assets\Scripts\UI\UIBattle\UICharacter.cs" />
+     <Compile Include="Assets\Scripts\UI\UIBattle\UIHealthBar.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEditor\EditorCharacterStats.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEditor\EditorLevelExp.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEffect\UICharacterScale.cs" />
      <Compile Include="Assets\Scripts\Utilities\Constant.cs" />
      <Compile Include="Assets\Scripts\Utilities\FileMgr.cs" />
      <Compile Include="Assets\Scripts\Utilities\PointBase.cs" />

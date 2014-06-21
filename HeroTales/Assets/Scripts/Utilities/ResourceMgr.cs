@@ -60,12 +60,12 @@ public class ResourceMgr {
 		{
 			ConstantValue.RES_TYPE_GAME_OBJECT , new ResourceDictionary(typeof(GameObject))
 			{
-				{
-					ConstantValue.PREFABS_TAG_BATTLE , new Dictionary<string,string>()
-					{
-						{ ConstantValue.TAG_BATTLE_MOVE , @"Battle/Move" }
-					}
-				}
+//				{
+//					ConstantValue.PREFABS_TAG_BATTLE , new Dictionary<string,string>()
+//					{
+//						{ ConstantValue.TAG_BATTLE_MOVE , @"Battle/Move" }
+//					}
+//				}
 			}
 		},
 		{
@@ -79,6 +79,17 @@ public class ResourceMgr {
 //						{ ConstantValue.TAG_TEMPLATE_ARC_0 , @"MainChar/Char_Template_Arc" }
 //					}
 //				}
+			}
+		},
+		{
+			ConstantValue.RES_TYPE_SPRITE_COLLECTION_DATA , new ResourceDictionary(typeof(tk2dSpriteCollectionData))
+			{
+				{
+					ConstantValue.PREFABS_TAG_CHARACTER_COLLECTION , new Dictionary<string,string>()
+					{
+						{ ConstantValue.TAG_CHAR_COLLECTION_0 , @"CharacterCollection0" }
+					}
+				}
 			}
 		}
 	};
@@ -117,7 +128,15 @@ public class ResourceMgr {
 		UnityEngine.Object res;
 		foreach( var pair in dicResource )
 		{
-			res = Resources.Load(pair.Value);
+			if( resType == ConstantValue.RES_TYPE_SPRITE_COLLECTION_DATA )
+			{
+				Debug.Log("Load : " + resType + "/" + resGroup + "/" + pair.Key + "/" + pair.Value );
+				res = tk2dSystem.LoadResourceByName<tk2dSpriteCollectionData>(pair.Value);
+			}
+			else
+			{
+				res = Resources.Load(pair.Value);
+			}
 
 			if( res != null )
 			{

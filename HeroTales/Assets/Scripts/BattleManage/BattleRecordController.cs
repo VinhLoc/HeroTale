@@ -22,6 +22,7 @@ public class BattleRecord
 	}
 
 	public int Turn;
+	public bool IsLeft;
 	public SlotInfo AttackerSlot = new SlotInfo();
 	public SlotInfo DefenderSlot = new SlotInfo();
 	public int Damage;
@@ -52,6 +53,7 @@ public class BattleRecordController  {
 	}
 
 	public BattleRecords PBattleRecords = new BattleRecords();
+	public bool WinGameResult = false;
 
 	private int CurrentIdx = 0;
 	public void CreateRecord ( )
@@ -81,6 +83,15 @@ public class BattleRecordController  {
 		if( record != null )
 		{
 			record.Turn = turn;
+		}
+	}
+
+	public static void RecrodIsLeft ( bool isLeft )
+	{
+		BattleRecord record = BattleRecordController.Instance.GetCurrentRecord();
+		if( record != null )
+		{
+			record.IsLeft = isLeft;
 		}
 	}
 

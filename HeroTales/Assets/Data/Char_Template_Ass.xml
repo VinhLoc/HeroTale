@@ -34,4 +34,5 @@
     <Hit>2</Hit>
     <Critical>1</Critical>
   </CombatStats>
+  <SpriteLinkerTag>Assasin</SpriteLinkerTag>
 </Character>
