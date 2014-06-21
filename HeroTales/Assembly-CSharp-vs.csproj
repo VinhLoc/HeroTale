@@ -67,6 +67,8 @@
      <Compile Include="Assets\Scripts\PlayerManage\Player\Tactics.cs" />
      <Compile Include="Assets\Scripts\Scenes\SelectChar\ButtonSelectChar.cs" />
      <Compile Include="Assets\Scripts\Scenes\SelectChar\SelectCharControl.cs" />
+     <Compile Include="Assets\Scripts\Scenes\WorldMap\CharacterBoardInfo.cs" />
+     <Compile Include="Assets\Scripts\Scenes\WorldMap\TokenSelect.cs" />
      <Compile Include="Assets\Scripts\UI\EditorCharacterStats.cs" />
      <Compile Include="Assets\Scripts\UI\EditorLevelExp.cs" />
      <Compile Include="Assets\Scripts\Utilities\Constant.cs" />
