@@ -72,7 +72,12 @@ public class SelectCharControl : MonoBehaviour
 
 	public void CreateMainCharacter()
 	{
-		//TODO: create character with mainClass
+		Player player = AccountMgr.Instance.createNewAccount ("Player");
+		Character character = CharacterFactory.Instance.createNewCharacter (mainClass, player.PAccount.Username);
+		player.PCharacters.ListCharacter.Add (character);
+		Player.Save (player);
+		PlayerMgr.Instance.CurrentPlayer = player;
+
 	}
 }
 
