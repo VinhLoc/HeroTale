@@ -5,18 +5,27 @@ public class SelectCharControl : MonoBehaviour
 {
 	public InfoStats.CLASS_TYPE mainClass { get; set; }
 
+	public tk2dUIToggleButton[] toggleButtons;
+
 	public tk2dUIProgressBar UIAttack;
 	public tk2dUIProgressBar UIDefense;
 	public tk2dUIProgressBar UIBlock;
 	public tk2dUIProgressBar UICritical;
 	public tk2dUIProgressBar UIDodge;
 
-	public tk2dTextMesh UIHeroName;
+	public tk2dSprite UIHeroName;
 
-	public void SelectChar(InfoStats.CLASS_TYPE charClass)
+	public void SelectChar(InfoStats.CLASS_TYPE charClass, tk2dUIToggleButton button)
 	{
-		if (mainClass == charClass)
+		if (mainClass == charClass) {
+			button.IsOn = true;
 			return;
+		}
+
+		foreach (var item in toggleButtons) {
+			if (item != button)
+				item.IsOn = false;
+		}
 
 		mainClass = charClass;
 
@@ -39,7 +48,17 @@ public class SelectCharControl : MonoBehaviour
 		UICritical.Value = 1;
 		UIDodge.Value = 1;
 
-		UIHeroName.text = "PALADIN";
+		switch (mainClass) {
+		case InfoStats.CLASS_TYPE.PALADIN:
+			UIHeroName.SetSprite("Beast-Master");
+			break;
+		case InfoStats.CLASS_TYPE.ARCHER:
+			UIHeroName.SetSprite("Text_Gunner");
+			break;
+		case InfoStats.CLASS_TYPE.ASSASSIN:
+			UIHeroName.SetSprite("Text_Sorceress");
+			break;
+		}	
 	}
 
 	public void CreateMainCharacter()
