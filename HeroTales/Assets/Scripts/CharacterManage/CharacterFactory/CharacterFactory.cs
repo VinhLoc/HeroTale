@@ -44,7 +44,7 @@ public class CharacterFactory {
 	}
 
 
-	private Character getCharacterTemplateByClass ( InfoStats.CLASS_TYPE type )
+	public Character getCharacterTemplateByClass ( InfoStats.CLASS_TYPE type )
 	{
 		switch ( type )
 		{
