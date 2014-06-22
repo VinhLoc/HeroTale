@@ -166,4 +166,18 @@ public class CustomFade : MonoBehaviour {
 			}
 		}
 	}
+
+	public static void StopEvent ( GameObject go , string eventName )
+	{
+		CustomFade[] fades = go.GetComponents<CustomFade>();
+		
+		foreach( var fade in fades )
+		{
+			if( fade.EventName == eventName )
+			{
+				fade.StopAction();
+				return;
+			}
+		}
+	}
 }
