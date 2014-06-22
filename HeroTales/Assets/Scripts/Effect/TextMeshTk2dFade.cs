@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class SpriteFade : CustomFade {
+public class TextMeshTk2dFade : CustomFade {
 
-
-	tk2dBaseSprite sprite;
+	tk2dTextMesh sprite;
 	float startAlpha ; //this is for save alpha when fade out
-
+	
 	// Use this for initialization
 	void Start () {
 		if( AutoRun )
@@ -15,7 +13,7 @@ public class SpriteFade : CustomFade {
 			StartAction ( );
 		}
 	}
-
+	
 	public override IEnumerator updateNoDuration ()
 	{
 		setupTimer();
@@ -23,7 +21,7 @@ public class SpriteFade : CustomFade {
 		{
 			yield return null;
 		}
-
+		
 		if( sprite && this.Running )
 		{
 			Color color = sprite.color;
@@ -44,22 +42,22 @@ public class SpriteFade : CustomFade {
 			yield break;
 		}
 	}
-
+	
 	public override IEnumerator updateColor ( )
 	{
-        setupTimer();
+		setupTimer();
 		while( GetDelay() )
-        {
-            yield return null;
-        }
-
+		{
+			yield return null;
+		}
+		
 		while( sprite && this.Running )
 		{
 			Color color = sprite.color;
 			
 			if( Type == FadeType.FadeIn )
 			{
-                color.a += fadePerSec * getTime();
+				color.a += fadePerSec * getTime();
 				if( color.a >= alphaChanel )
 				{
 					sprite.color = new Color( color.r , color.g , color.b , alphaChanel );
@@ -108,29 +106,29 @@ public class SpriteFade : CustomFade {
 				
 				sprite.color = color;
 			}
-
+			
 			yield return null;
 		}
 	}
-
+	
 	public override void StartAction( )
 	{
 		updateChild( );
-
-		sprite = GetComponent<tk2dBaseSprite>();
+		
+		sprite = GetComponent<tk2dTextMesh>();
 		AlphaTo = Alpha;
 		alphaChanel = AlphaTo / 255;
-
+		
 		if( sprite )
 		{
 			sprite.color = new Color(sprite.color.r , sprite.color.g , sprite.color.g , AlphaFrom / 255 );
 			startAlpha = sprite.color.a;
-
+			
 			if( Type == FadeType.FadeIn)
 			{
-//				sprite.color = new Color(sprite.color.r , sprite.color.g , sprite.color.g , AlphaFrom );
-//				startAlpha = sprite.color.a;
-
+				//				sprite.color = new Color(sprite.color.r , sprite.color.g , sprite.color.g , AlphaFrom );
+				//				startAlpha = sprite.color.a;
+				
 				if( Duration != 0 )
 				{
 					fadePerSec = ( alphaChanel ) / Duration;
@@ -153,10 +151,10 @@ public class SpriteFade : CustomFade {
 				}
 			}
 		}
-
+		
 		this.Running = true;
 		this.Delaying = this.Delay > 0;
-
+		
 		if( NoDuration )
 		{
 			StartCoroutine("updateNoDuration");
@@ -166,7 +164,7 @@ public class SpriteFade : CustomFade {
 			StartCoroutine("updateColor");
 		}
 	}
-
+	
 	public override void StopAction ( )
 	{
 		StopAllCoroutines( );

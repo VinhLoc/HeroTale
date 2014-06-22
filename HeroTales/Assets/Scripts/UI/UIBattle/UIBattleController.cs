@@ -101,6 +101,12 @@ public class UIBattleController : MonoBehaviour {
 
 	public void NextAction ( )
 	{
+		if( CurrentRecordIndex >= Records.Count )
+		{
+			//on END GAME
+			return;
+		}
+
 		BattleRecord record = Records[CurrentRecordIndex];
 
 		Transform attackerDeployment = record.IsLeft ? DeploymentLeft : DeploymentRight;
@@ -112,16 +118,17 @@ public class UIBattleController : MonoBehaviour {
 		Transform defender = GetCharacterInCell( defenderDeployment , record.DefenderSlot.Index ,
 		                                        record.DefenderSlot.Charname );
 
-		UIBattleAnimation animation  = attacker.GetComponent<UIBattleAnimation>();
-		if( null != animation )
-		{
-			animation.MoveTo( record.IsLeft , defender );
-		}
+		BattleActionController.Instance.StartAction( attacker , defender , record.IsLeft );
 	}
 
 	public void IncreaseRecordIndex ()
 	{
 		CurrentRecordIndex += 1;
+	}
+
+	public BattleRecord GetCurrentRecord ()
+	{
+		return Records[CurrentRecordIndex];
 	}
 
 	private Transform GetCharacterInCell ( Transform deployment , int cellIndex , string characterName )

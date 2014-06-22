@@ -58,10 +58,12 @@
      <Compile Include="Assets\Scripts\CharacterManage\CharacterFactory\CharacterFactory.cs" />
      <Compile Include="Assets\Scripts\CharacterManage\CharacterFactory\LevelCharacterController.cs" />
      <Compile Include="Assets\Scripts\Effect\AttackEfx\SplashEfx.cs" />
+     <Compile Include="Assets\Scripts\Effect\AttackEfx\SwordAttackEfx.cs" />
      <Compile Include="Assets\Scripts\Effect\CustomFade.cs" />
      <Compile Include="Assets\Scripts\Effect\EffectBase.cs" />
      <Compile Include="Assets\Scripts\Effect\EffectMgr.cs" />
      <Compile Include="Assets\Scripts\Effect\SpriteFade.cs" />
+     <Compile Include="Assets\Scripts\Effect\TextMeshTk2dFade.cs" />
      <Compile Include="Assets\Scripts\MapManager\MapInfo.cs" />
      <Compile Include="Assets\Scripts\MapManager\MapManager.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\AccountMgr\AccountMgr.cs" />
