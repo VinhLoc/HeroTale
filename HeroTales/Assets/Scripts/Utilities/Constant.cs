@@ -47,6 +47,7 @@ public class ConstantValue {
 	// PlayerPrefs //
 	public const string PREFS_LAST_USER_ID = "UserID";
 
+	public const float COMBAT_BASE_VALUE = 30f;
 
 	// Sprite ID Map //
 	public class SpriteIdLinker

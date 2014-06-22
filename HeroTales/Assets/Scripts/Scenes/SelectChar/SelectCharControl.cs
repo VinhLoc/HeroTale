@@ -7,6 +7,8 @@ public class SelectCharControl : MonoBehaviour
 
 	public tk2dUIToggleButton[] toggleButtons;
 
+	public tk2dSprite charSprite;
+
 	public tk2dUIProgressBar UIAttack;
 	public tk2dUIProgressBar UIDefense;
 	public tk2dUIProgressBar UIBlock;
@@ -14,6 +16,13 @@ public class SelectCharControl : MonoBehaviour
 	public tk2dUIProgressBar UIDodge;
 
 	public tk2dSprite UIHeroName;
+
+	void Start()
+	{
+		mainClass = InfoStats.CLASS_TYPE.PALADIN;
+		Character info = CharacterFactory.Instance.getCharacterTemplateByClass (mainClass);
+		FillClassInfoStats (info.PCombatStats);
+	}
 
 	public void SelectChar(InfoStats.CLASS_TYPE charClass, tk2dUIToggleButton button)
 	{
@@ -30,40 +39,45 @@ public class SelectCharControl : MonoBehaviour
 		mainClass = charClass;
 
 		//TODO: refactor these code
-		GetClassStats ();
-		FillClassInfoStats ();
-	}
-
-	void GetClassStats()
-	{
-		//TODO: return info stats of class
+		Character info = CharacterFactory.Instance.getCharacterTemplateByClass (mainClass);
+		FillClassInfoStats (info.PCombatStats);
 	}
 
 	//TODO: pass info stats parameter
-	void FillClassInfoStats()
+	void FillClassInfoStats(CombatStats info)
 	{
-		UIAttack.Value = 1;
-		UIDefense.Value = 1;
-		UIBlock.Value = 1;
-		UICritical.Value = 1;
-		UIDodge.Value = 1;
+		float baseValue = ConstantValue.COMBAT_BASE_VALUE;
+
+		UIAttack.Value = info.Attack / baseValue;
+		UIDefense.Value = info.Defend / baseValue;
+		//UIBlock.Value = 1;
+		UICritical.Value = info.Critical / baseValue;
+		UIDodge.Value = info.Dodge / baseValue;
 
 		switch (mainClass) {
 		case InfoStats.CLASS_TYPE.PALADIN:
 			UIHeroName.SetSprite("Beast-Master");
+			charSprite.SetSprite("beastmaster");
 			break;
 		case InfoStats.CLASS_TYPE.ARCHER:
 			UIHeroName.SetSprite("Text_Gunner");
+			charSprite.SetSprite("gunner");
 			break;
 		case InfoStats.CLASS_TYPE.ASSASSIN:
 			UIHeroName.SetSprite("Text_Sorceress");
+			charSprite.SetSprite("sorceress");
 			break;
 		}	
 	}
 
 	public void CreateMainCharacter()
 	{
-		//TODO: create character with mainClass
+		Player player = AccountMgr.Instance.createNewAccount ("Player");
+		Character character = CharacterFactory.Instance.createNewCharacter (mainClass, player.PAccount.Username);
+		player.PCharacters.ListCharacter.Add (character);
+		Player.Save (player);
+		PlayerMgr.Instance.CurrentPlayer = player;
+
 	}
 }
 
