@@ -3,13 +3,6 @@ using System.Collections;
 
 public class TokenSelect : MonoBehaviour
 {
-	public enum TokenStatus
-	{
-		TokenBlocked,
-		TokenOpened,
-		TokenCompleted
-	}
-
 	public int map_id;
 	public tk2dSprite title;
 
@@ -18,6 +11,12 @@ public class TokenSelect : MonoBehaviour
 	void Awake()
 	{
 		tokenSprite = GetComponent<tk2dSprite> ();
+	}
+
+	void Start()
+	{
+		MapInfo info = MapManager.Instance.GetMap (map_id);
+		status = info._status;
 	}
 
 	public TokenStatus status {

@@ -62,6 +62,8 @@
      <Compile Include="Assets\Scripts\Effect\EffectBase.cs" />
      <Compile Include="Assets\Scripts\Effect\EffectMgr.cs" />
      <Compile Include="Assets\Scripts\Effect\SpriteFade.cs" />
+     <Compile Include="Assets\Scripts\MapManager\MapInfo.cs" />
+     <Compile Include="Assets\Scripts\MapManager\MapManager.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\AccountMgr\AccountMgr.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\Player\AccountInfo.cs" />
      <Compile Include="Assets\Scripts\PlayerManage\Player\BalanceInfo.cs" />
@@ -80,6 +82,9 @@
      <Compile Include="Assets\Scripts\UI\UIBattle\UIHealthBar.cs" />
      <Compile Include="Assets\Scripts\UI\UIEditor\EditorCharacterStats.cs" />
      <Compile Include="Assets\Scripts\UI\UIEditor\EditorLevelExp.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEditor\ExportMapData.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEditor\MapCharacterInfo.cs" />
+     <Compile Include="Assets\Scripts\UI\UIEditor\MapCharacters.cs" />
      <Compile Include="Assets\Scripts\UI\UIEffect\UICharacterScale.cs" />
      <Compile Include="Assets\Scripts\Utilities\Constant.cs" />
      <Compile Include="Assets\Scripts\Utilities\FileMgr.cs" />
@@ -190,6 +195,7 @@
      <None Include="Assets\TK2DROOT\tk2d\Shaders\CutoutVertexColor.shader" />
      <None Include="Assets\Data\Char_Template_Arc.xml" />
      <None Include="Assets\TK2DROOT\tk2d_demo\demobmfont\test.fnt" />
+     <None Include="Assets\Data\Map.xml" />
      <None Include="Assets\TK2DROOT\tk2dUI_demo\Assets\Font\OldSansBlack\OldSansBlack.fnt" />
      <None Include="Assets\TK2DROOT\tk2d\Shaders\LitBlendVertexColor.shader" />
      <None Include="Assets\Data\Char_Template_Pal.xml" />

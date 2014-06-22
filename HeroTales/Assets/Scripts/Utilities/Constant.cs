@@ -10,6 +10,14 @@ public enum SpriteIdLinkerTag
 	Archer
 }
 
+[System.Serializable]
+public enum TokenStatus
+{
+	TokenBlocked,
+	TokenOpened,
+	TokenCompleted
+}
+
 public class ConstantValue {
 
 	public const string RES_TYPE_GAME_OBJECT = "GameObject";
@@ -43,6 +51,8 @@ public class ConstantValue {
 	public const string FILE_TEMPALTE_PAL = "Data/Char_Template_Pal.xml";
 	public const string FILE_TEMPALTE_ASS = "Data/Char_Template_Ass.xml";
 	public const string FILE_TEMPALTE_ARC = "Data/Char_Template_Arc.xml";
+
+	public const string FILE_MAPDATA = "Data/Map.xml";
 	
 	// PlayerPrefs //
 	public const string PREFS_LAST_USER_ID = "UserID";

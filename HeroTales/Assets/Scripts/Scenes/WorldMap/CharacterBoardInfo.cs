@@ -15,7 +15,9 @@ public class CharacterBoardInfo : MonoBehaviour
 
 	void Start()
 	{
-		// TODO: we need to get infor of player to update board
+		// TODO: need to get infor of player to update board
+//		Player player = PlayerMgr.Instance.CurrentPlayer;
+
 		UpdateBoard (InfoStats.CLASS_TYPE.ASSASSIN,
 		            20, 2000, 200, 2000, 0.5f, 0.7f);
 	}
