@@ -1,13 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleManage/BattleActionController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/UIBattle/UIBattleController.cs">
     <Files>
-      <File FileName="Assets/Scripts/UI/UIBattle/UIBattleAnimation.cs" Line="55" Column="3" />
-      <File FileName="Assets/Scripts/BattleManage/BattleActionController.cs" Line="111" Column="3" />
-      <File FileName="Assets/Scripts/UI/UIBattle/UIBattleController.cs" Line="115" Column="86" />
-      <File FileName="Assets/Scripts/Effect/SpriteFade.cs" Line="172" Column="24" />
+      <File FileName="Assets/Scripts/UI/UIBattle/UIBattleAnimation.cs" Line="55" Column="49" />
+      <File FileName="Assets/Scripts/BattleManage/BattleActionController.cs" Line="171" Column="68" />
+      <File FileName="Assets/Scripts/UI/UIBattle/UIBattleController.cs" Line="121" Column="86" />
+      <File FileName="Assets/Scripts/Effect/SpriteFade.cs" Line="8" Column="2" />
       <File FileName="Assets/Scripts/Effect/EffectMgr.cs" Line="46" Column="44" />
-      <File FileName="Assets/Scripts/Effect/CustomFade.cs" Line="184" Column="1" />
+      <File FileName="Assets/Scripts/Effect/CustomFade.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Effect/TextMeshTk2dFade.cs" Line="118" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
